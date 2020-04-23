@@ -1,0 +1,32 @@
+@import "_mixins";
+
+.app {
+    position: relative; 
+    background: linear-gradient(104.06deg, #F6D365 2.67%, #FDA085 81.39%), linear-gradient(119.13deg, #84FAB0 13.56%, #8FD3F4 83.68%), linear-gradient(63.78deg, #FF9A9E 11.94%, #FAD0C4 90.14%), linear-gradient(61.73deg, #C3CFE2 1.47%, #F5F7FA 99.86%);
+    color: #fff;
+
+    font-family: Poppins;
+    height: 100%;
+
+    // .app__body
+    &__body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}
+
+.vspace {
+    padding-bottom: 20px;
+
+    @include respond-to(sm) {
+        padding-bottom: 42px;
+    }
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+}

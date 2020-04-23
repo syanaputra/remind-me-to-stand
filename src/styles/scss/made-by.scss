@@ -1,0 +1,33 @@
+@import "_mixins";
+
+.madeby {
+    text-align: center;
+
+    // .madeby__subtext
+    &__subtext {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+        text-transform: uppercase;
+
+        @include respond-to(sm) {
+            font-size: 14px;
+            line-height: 21px;
+        }
+    }
+
+    // .madeby__text
+    &__text {
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 40px;
+        text-transform: lowercase;
+        color: inherit;
+        text-decoration: none;
+        
+        @include respond-to(sm) {
+            font-size: 32px;
+            line-height: 48px;
+        }
+    }
+}
