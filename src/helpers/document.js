@@ -1,6 +1,6 @@
 import Numeral from 'numeral';
-
-export const SITE_NAME = 'Remind Me To Stand';
+import { config } from '../config';
+const { SITE_NAME } = config;
 
 /**
  * Change document title

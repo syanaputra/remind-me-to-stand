@@ -1,4 +1,6 @@
-import { changeDocumentTitle, updateDocumentTitleBySecond, updateDocumentTitleWithSiteName, resetDocumentTitle, SITE_NAME } from './document';
+import { changeDocumentTitle, updateDocumentTitleBySecond, updateDocumentTitleWithSiteName, resetDocumentTitle } from './document';
+import { config } from '../config';
+const { SITE_NAME } = config;
 
 test('helper: changeDocumentTitle()', () => {
     changeDocumentTitle('test123');

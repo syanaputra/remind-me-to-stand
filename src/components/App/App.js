@@ -8,6 +8,7 @@ import { updateDocumentTitleBySecond, updateDocumentTitleWithSiteName, resetDocu
 import '../../styles/scss/app.scss';
 import { playSound, stopSound } from '../../helpers/alarm-player';
 import { requestNotification, notifyTimerFinished } from '../../helpers/desktop-notification';
+import { initializeGA, sendTimerEvent } from '../../helpers/ga';
 
 let timerInterval;
 
@@ -34,11 +35,14 @@ const App = (props) => {
       });
       
       setTimerRunner();
+      sendTimerEvent('Start');
     },
     pause: () => {
       dispatch({
         type: 'PAUSE_TIMER'
       });
+
+      sendTimerEvent('Pause');
     },
     reset: () => {
       dispatch({
@@ -46,6 +50,7 @@ const App = (props) => {
       });
 
       stopSound();
+      sendTimerEvent('Reset');
     },
     finish: (value) => {
       dispatch({
@@ -53,6 +58,7 @@ const App = (props) => {
       });
       
       removeTimerRunner();
+      sendTimerEvent('Finish');
     },
     modify: (value) => {
       dispatch({
@@ -61,6 +67,7 @@ const App = (props) => {
       });
 
       removeTimerRunner();
+      sendTimerEvent('Set Time', value);
     },
   };
 
@@ -99,6 +106,7 @@ const App = (props) => {
   // Request notification on the first time app loads
   useEffect(() => {
     requestNotification();
+    initializeGA();
   }, []);
 
   return (

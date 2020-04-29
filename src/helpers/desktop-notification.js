@@ -1,5 +1,6 @@
-import { SITE_NAME } from './document';
 import Logo from '../assets/logo/logo.png';
+import { config } from '../config';
+const { SITE_NAME } = config;
 
 /**
  * Request notification from browser
