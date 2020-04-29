@@ -7,16 +7,13 @@ import { initialState, reducer } from './reducer';
 import { updateDocumentTitleBySecond, updateDocumentTitleWithSiteName, resetDocumentTitle } from '../../helpers/document';
 import '../../styles/scss/app.scss';
 import { playSound, stopSound } from '../../helpers/alarm-player';
+import { requestNotification, notifyTimerFinished } from '../../helpers/desktop-notification';
 
 let timerInterval;
 
-function App(props) {
+const App = (props) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
   const { timeLeft, status } = state;
-
-  const onAppClick = () => {
-    stopSound();
-  };
 
   const setTimerRunner = () => {
     timerInterval = setInterval(() => {
@@ -47,12 +44,14 @@ function App(props) {
       dispatch({
         type: 'RESET_TIMER'
       });
+
+      stopSound();
     },
     finish: (value) => {
       dispatch({
         type: 'FINISH_TIMER',
       });
-
+      
       removeTimerRunner();
     },
     modify: (value) => {
@@ -65,6 +64,15 @@ function App(props) {
     },
   };
 
+  const onAppClick = () => {
+    if(status === 'finished') {
+      timerAction.reset();
+    }
+  };
+
+  // Effect
+  // -------------
+  // Handles all timer related
   useEffect(() => {
     if(status === 'active') {
       if(timeLeft > 0) {
@@ -79,11 +87,19 @@ function App(props) {
 
       // play music here
       playSound('bell');
+
+      // send notification
+      notifyTimerFinished(timerAction);
     }
     else if(status === 'inactive') {
       resetDocumentTitle();
     }
   }, [timeLeft, status]);
+
+  // Request notification on the first time app loads
+  useEffect(() => {
+    requestNotification();
+  }, []);
 
   return (
     <div className="app" onClick={onAppClick}>

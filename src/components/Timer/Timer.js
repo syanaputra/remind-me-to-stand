@@ -8,7 +8,7 @@ const DEFAULT_TIME_INPUT = '00:00:00';
 
 const Timer = (props) => {
     const { data, timerAction } = props;
-    const { start, modify } = timerAction;
+    const { start, modify, reset } = timerAction;
     const { timeLeft, status } = data;
     const active = timeLeft > 0;
     const warning = timeLeft > 0 && timeLeft <= 5;
@@ -20,6 +20,9 @@ const Timer = (props) => {
     const submitTime = async (e) => {
         if(timeLeft > 0) {
             await start();
+        }
+        else {
+            await reset();
         }
     };
 
