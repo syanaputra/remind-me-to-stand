@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
+import About from '../Common/About';
 import Footer from '../Common/Footer';
 import Timer from '../Timer';
 import TimePills from '../TimePills';
@@ -128,6 +129,7 @@ const App = (props) => {
         </div>
       </div>
       <Footer />
+      <About />
     </div>
   );
 }

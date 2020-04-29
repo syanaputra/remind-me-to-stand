@@ -1,0 +1,70 @@
+@import "_mixins";
+
+.side-modal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.2s;
+    
+    width: 370px;
+    max-width: 100%;
+    height: 100%;
+    background: #444;
+    color: #eee;
+    padding: 25px;
+
+    @include respond-to(sm) {
+        padding: 40px 50px;
+        width: 500px;
+    }
+
+    // .side-modal--active
+    &--active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    // .side-modal__close
+    &__close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border: 2px solid #eee;
+        box-shadow: none;
+        transition: all 0.2s;
+        
+        background: #444;
+        color: #eee;
+
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        font-size: 24px;
+
+        @include respond-to(sm) {
+            top: 25px;
+            right: 25px;
+            font-size: 28px;
+
+            width: 35px;
+            height: 35px;
+            border-radius: 35px;
+        }
+
+        &:hover, &:focus {
+            background: #eee;
+            color: #444;
+            cursor: pointer;
+            outline: none;
+        }
+    }
+
+    // .side-modal__head
+    &__head {
+        margin-bottom: 30px;
+    }
+}

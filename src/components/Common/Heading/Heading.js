@@ -1,11 +1,11 @@
 import React from 'react';
-import '../../../styles/scss/heading.scss';
+import '../../../styles/scss/typography.scss';
 
 const Heading = (props) => {
     const { children } = props;
 
     return (
-        <div className="heading">{children}</div>
+        <div className="heading heading--lv4">{children}</div>
     );
 }
 
