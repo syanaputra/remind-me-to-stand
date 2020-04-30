@@ -1,9 +1,14 @@
 import React from 'react';
 import Pill from './Pill';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 
-test('render component: Pill', () => {
-  const component = renderer.create(<Pill />);
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+test("render component: Pill", () => {
+  const { getByText } = render(
+    <Pill
+      text={'lorem'}
+    />
+  );
+
+  const linkElement = getByText(/lorem/i);
+  expect(linkElement).toBeInTheDocument();
 });

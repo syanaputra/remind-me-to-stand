@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import MadeBy from './MadeBy';
+import { render } from '@testing-library/react';
 
 test('render component: MadeBy', () => {
   const { getByText } = render(<MadeBy />);

@@ -1,9 +1,9 @@
 import React from 'react';
 import Heading from './Heading';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 
 test('render component: Heading', () => {
-  const component = renderer.create(<Heading>Title</Heading>);
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  const { getByText } = render(<Heading>Title</Heading>);
+  const linkElement = getByText(/Title/i);
+  expect(linkElement).toBeInTheDocument();
 });
