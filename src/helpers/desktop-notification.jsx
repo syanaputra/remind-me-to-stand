@@ -19,7 +19,7 @@ export const requestNotification = () => {
 /**
  * Notify that timer has finished
  */
-export const notifyTimerFinished = (timerAction) => {
+export const notifyTimerFinished = (onFinishedCallback) => {
     if (Notification.permission !== 'granted') {
         requestNotification();
     }
@@ -30,11 +30,15 @@ export const notifyTimerFinished = (timerAction) => {
         });
 
         notification.onclick = function() {
-            timerAction.reset();
+            if (onFinishedCallback) {
+                onFinishedCallback();
+            }
         };
 
         notification.onclose = function() {
-            timerAction.reset();
+            if (onFinishedCallback) {
+                onFinishedCallback();
+            }
         };
     }
 }

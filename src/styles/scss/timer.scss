@@ -126,7 +126,8 @@
         align-items: center;
         justify-items: center;
 
-        span {
+        // .timer__notification__text
+        &__text {
             display: block;
             width: 100%;
             text-align: center;
@@ -139,6 +140,29 @@
             }
             @include respond-to(md) {
                 font-size: 108px;
+            }
+        }
+
+        // .timer__notification__subtext
+        &__subtext {
+            position: absolute;
+            bottom: 7.5px;
+
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-family: 'Poppins';
+            font-size: 11px;
+            font-weight: 500;
+
+            opacity: 0.85;
+            
+            @include respond-to(sm) {
+                font-size: 12px;
+                bottom: 20px;
+            }
+            @include respond-to(md) {
+                font-size: 14px;
             }
         }
     }

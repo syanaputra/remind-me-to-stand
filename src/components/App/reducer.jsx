@@ -33,6 +33,12 @@ export const reducer = (state, action) => {
                 timeLeft: action.value,
                 status: 'paused'
             };
+        case 'SET_TIME':
+            return {
+                ...state,
+                timeLeft: action.value,
+                status: 'active'
+            };
         case 'REDUCE_TIME_BY_SECOND':
             return {
                 ...state,

@@ -44,7 +44,7 @@ const TimePills = (props) => {
             />
             <Pill 
                 text="3 sec"
-                onClick={(e) => {
+                onClick={async (e) => {
                     modify(3);
                     start();
                 }}

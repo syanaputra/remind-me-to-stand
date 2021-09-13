@@ -3,6 +3,7 @@ import Cleave from 'cleave.js/react';
 import '../../styles/scss/timer.scss';
 
 const TimerInput = (props) => {
+    
     const formatValue = (value) => {
         const newValue = value.replace(/:/ig, "");
         let hours = newValue.substr(0,2) || '00';
@@ -33,6 +34,7 @@ const TimerInput = (props) => {
             }}
             value={props.value || '00:00:00'}
             onChange={onChange}
+            onClick={props.onClick}
         />
     );
 }
