@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useCallback, useMemo } from 'react';
 import About from '../Common/About';
 import Footer from '../Common/Footer';
 import Timer from '../Timer';
@@ -18,19 +18,19 @@ const App = (props) => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
   const { timeLeft, status } = state;
 
-  const setTimerRunner = () => {
+  const setTimerRunner = useCallback(() => {
     setup(() => {
       dispatch({
         type: 'REDUCE_TIME_BY_SECOND',
       });
     }, 1000);
-  };
+  }, [dispatch, setup]);
 
-  const removeTimerRunner = () => {
+  const removeTimerRunner = useCallback(() => {
     clear();
-  };
+  }, [clear]);
 
-  const timerAction = {
+  const timerAction = useMemo(() => ({
     start: () => {
       dispatch({
         type: 'START_TIMER'
@@ -83,7 +83,7 @@ const App = (props) => {
       setTimerRunner();
       sendTimerEvent('Set Time', value);
     },
-  };
+  }), [dispatch, setTimerRunner, removeTimerRunner, stopSound]);
 
   const onAppClick = () => {
     if(status === 'finished') {
@@ -119,7 +119,7 @@ const App = (props) => {
     if (timeLeft <= 0) {
       removeTimerRunner();
     }
-  }, [timeLeft, status]);
+  }, [timeLeft, status, removeTimerRunner, playSound, timerAction]);
 
   // Request notification on the first time app loads
   useEffect(() => {
